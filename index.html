@@ -3,523 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manajer Bisnis - Pelanggan & Keuangan</title>
-    <!-- Memuat Tailwind CSS -->
+    <title>Dashboard Stasiun Kereta Api</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Konfigurasi Tailwind untuk menggunakan font Inter dan warna kustom -->
-
-    <!-- Memuat ikon Lucide -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="gradient-bg">
+<body class="flex">
 
-    <!-- Konten Utama (Full Width) -->
-    <main id="main-content" class="main-content p-4 md:p-8">
-        <div class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-6 md:p-8 min-h-[95vh] flex flex-col">
-            
-            <!-- Header Konten -->
-            <header class="flex justify-between items-center mb-10 pb-2">
-    <!-- Logo/Nama Aplikasi -->
-    <div class="flex items-center">
-        <svg class="lucide lucide-zap-bg mr-2 text-primary-purple" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-        </svg>
-        <h1 id="page-title" class="text-3xl font-extrabold text-gray-800">Dashboard Utama</h1>
-    </div>
+    <!-- Sidebar Kiri -->
+    <div class="sidebar flex flex-col p-4" id="sidebar-menu">
+        <!-- Header Sidebar dengan Tombol Toggle -->
+        <div class="flex justify-between items-center py-4 border-b border-white border-opacity-20 mb-6">
+            <h1 class="text-2xl font-extrabold sidebar-link-text font-archivoblack italic">RailStatiON</h1>
+            <button id="sidebar-toggle-btn" class="p-2 text-white hover:bg-white hover:bg-opacity-20 rounded-full transition-colors duration-300">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
 
-    <!-- Navigasi + Profil di kanan -->
-    <div class="flex items-center space-x-8">
+        <!-- Dropdown Nama Stasiun -->
+        <div class="mb-6">
+            <p class="text-xs text-white text-opacity-70 mb-1 px-1 sidebar-link-text">Pilih Nama Stasiun Disini</p>
+            <select class="w-full p-2 bg-white text-blue-900 rounded-lg font-medium border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option>Arjasa</option>
+                <option>Kotok</option>
+                <option>Kalisat</option>
+                <option>Ledokombo</option>
+                <option>Sempolan</option>
+                <option>Garahan</option>
+                <option>Mrawan</option>
+                <option>Kalibaru</option>
+                <option>Glenmore</option>
+                <option>Sumberwadung</option>
+                <option>Kalisetail</option>
+                <option>Temuguruh</option>
+                <option>Singojuruh</option>
+                <option>Rogojampi</option>
+                <option>Banyuwangi Kota</option>
+                <option>Argopuro</option>
+                <option>Ketapang</option>
+                <option>Bondowoso</option>
+            </select>
+        </div>
+
         <!-- Menu Navigasi -->
-        <nav class="flex space-x-6 text-base font-semibold text-gray-700">
-            <a href="#" class="header-nav-link hover:text-primary-purple transition duration-200" data-target-page="dashboard">Dashboard</a>
-            <a href="#" class="header-nav-link hover:text-primary-purple transition duration-200" data-target-page="customers">Data Pelanggan</a>
-            <a href="#" class="header-nav-link hover:text-primary-purple transition duration-200" data-target-page="payments">Pembayaran</a>
-            <a href="#" class="header-nav-link hover:text-primary-purple transition duration-200" data-target-page="finance">Pembukuan</a>
+        <nav class="flex-grow">
+            <ul>
+                <li class="mb-4">
+                    <a href="#" id="menu-dashboard" class="flex items-center p-3 rounded-lg bg-blue-500 text-white font-semibold shadow-lg transition-all duration-200 transform scale-105">
+                        <span class="sidebar-link-icon-container">
+                            <i class="fas fa-chart-line"></i>
+                        </span>
+                        <span class="sidebar-link-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <a href="#" id="menu-profil" class="flex items-center p-3 rounded-lg hover:bg-blue-400 transition-colors duration-200">
+                        <span class="sidebar-link-icon-container">
+                            <i class="fas fa-file-alt"></i>
+                        </span>
+                        <span class="sidebar-link-text">Profil Stasiun</span>
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <a href="#" id="menu-pegawai" class="flex items-center p-3 rounded-lg hover:bg-blue-400 transition-colors duration-200">
+                        <span class="sidebar-link-icon-container">
+                            <i class="fas fa-users"></i>
+                        </span>
+                        <span class="sidebar-link-text">Data Pegawai</span>
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <a href="#" id="menu-perjalanan" class="flex items-center p-3 rounded-lg hover:bg-blue-400 transition-colors duration-200">
+                        <span class="sidebar-link-icon-container">
+                            <i class="fas fa-train"></i>
+                        </span>
+                        <span class="sidebar-link-text">Data Perka</span>
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <div id="menu-administrasi-toggle" class="flex items-center p-3 rounded-lg hover:bg-blue-400 transition-colors duration-200 cursor-pointer">
+                        <span class="sidebar-link-icon-container">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </span>
+                        <span class="sidebar-link-text flex-grow">Data Administrasi</span>
+                        <i class="fas fa-chevron-down text-white text-sm transition-transform duration-200"></i>
+                    </div>
+                    <ul id="administrasi-submenu" class="mt-2 space-y-2 submenu-transition">
+                        <li>
+                            <a href="#" id="submenu-ibpr" class="flex items-center p-3 rounded-lg text-white hover:bg-blue-400 transition-colors duration-200">
+                                <i class="fas fa-file-invoice mr-3 w-8 text-center"></i>
+                                <span class="sidebar-link-text">IBPR</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" id="submenu-penjagaan-bentuk" class="flex items-center p-3 rounded-lg text-white hover:bg-blue-400 transition-colors duration-200">
+                                <i class="fas fa-list-alt mr-3 w-8 text-center"></i>
+                                <span class="sidebar-link-text">Penjagaan Bentuk - Bentuk</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" id="submenu-penggunaan" class="flex items-center p-3 rounded-lg text-white hover:bg-blue-400 transition-colors duration-200">
+                                <i class="fas fa-id-card mr-3 w-8 text-center"></i>
+                                <span class="sidebar-link-text">Penggunaan KR dan SM</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" id="submenu-gangguan" class="flex items-center p-3 rounded-lg text-white hover:bg-blue-400 transition-colors duration-200">
+                                <i class="fas fa-exclamation-triangle mr-3 w-8 text-center"></i>
+                                <span class="sidebar-link-text">Gangguan Operasional</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="mb-4">
+                    <a href="#" id="menu-railibrary" class="flex items-center p-3 rounded-lg hover:bg-blue-400 transition-colors duration-200">
+                        <span class="sidebar-link-icon-container">
+                            <i class="fas fa-book"></i>
+                        </span>
+                        <span class="sidebar-link-text">RaiLibrary</span>
+                    </a>
+                </li>
+            </ul>
         </nav>
 
-        <!-- Profil Pengguna -->
-        <div class="flex items-center">
-            <img src="https://placehold.co/40x40/4B21E6/ffffff?text=A" alt="Foto Profil" class="w-10 h-10 rounded-full border-2 border-primary-purple">
+        <!-- Footer Copyright -->
+        <div class="mt-auto pt-6 text-center text-xs text-white text-opacity-50 sidebar-link-text">
+            <p>© 2025 All Rights Reserved</p>
+            <p>Last Update : (16 September 2025)</p>
+            <p>Built By : 69451</p>
         </div>
     </div>
-</header>
 
+    <!-- Bagian Tengah (Dashboard Utama) -->
+    <div class="main-content flex-grow p-6 sm:p-8" id="main-content">
 
-            <!-- Area Konten Dinamis -->
-            <section id="content-area" class="flex-grow">
-                
-                <!-- Konten Dashboard Awal -->
-                <div id="dashboard" class="page-content block space-y-8">
-                    <h2 class="text-2xl font-semibold text-gray-700">Ringkasan Kinerja Cepat</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-                        <!-- Total Pelanggan -->
-                        <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
-                            <div class="flex items-center justify-between">
-                                <p class="text-sm font-medium text-gray-500">Total Pelanggan</p>
-                                <svg class="lucide lucide-users text-primary-purple" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                            </div>
-                            <p class="text-3xl font-bold mt-2 text-gray-900">0</p>
-                            <p class="text-xs text-gray-500 mt-1">Data bulan lalu kosong</p>
-                        </div>
-                        
-                        <!-- Total Pembayaran -->
-                        <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
-                            <div class="flex items-center justify-between">
-                                <p class="text-sm font-medium text-gray-500">Total Pembayaran</p>
-                                <svg class="lucide lucide-wallet text-secondary-purple" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-3.34"/><path d="M15 15h1a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2h14"/></svg>
-                            </div>
-                            <p class="text-3xl font-bold mt-2 text-gray-900">Rp 0</p>
-                             <p class="text-xs text-gray-500 mt-1">Data bulan lalu kosong</p>
-                        </div>
-                        
-                        <!-- Uang Masuk -->
-                        <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
-                            <div class="flex items-center justify-between">
-                                <p class="text-sm font-medium text-gray-500">Uang Masuk (Bulan Ini)</p>
-                                <svg class="lucide lucide-trending-up text-green-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/></svg>
-                            </div>
-                            <p id="money-in" class="text-3xl font-bold mt-2 text-gray-900">Rp 0</p>
-                            <p class="text-xs text-gray-500 mt-1">Belum ada pemasukan</p>
-                        </div>
+        <!-- Header Utama dengan Tombol Login -->
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">Dashboard Stasiun <span class="text-blue-600">[Nama Stasiun]</span></h1>
+            <div class="flex space-x-4">
+                <button id="login-button" class="bg-blue-500 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-blue-600 transition-colors duration-300">Masuk</button>
+            </div>
+        </div>
 
-                        <!-- Uang Keluar -->
-                        <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
-                            <div class="flex items-center justify-between">
-                                <p class="text-sm font-medium text-gray-500">Uang Keluar (Bulan Ini)</p>
-                                <svg class="lucide lucide-trending-down text-red-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/></svg>
-                            </div>
-                            <p id="money-out" class="text-3xl font-bold mt-2 text-gray-900">Rp 0</p>
-                            <p class="text-xs text-gray-500 mt-1">Belum ada pengeluaran</p>
-                        </div>
+        <!-- Konten akan dimuat di sini -->
 
-                        <!-- Sisa Saldo (Baru Ditambahkan) -->
-                        <div class="bg-white p-6 rounded-2xl shadow-lg border border-primary-purple/50">
-                            <div class="flex items-center justify-between">
-                                <p class="text-sm font-medium text-gray-500">Sisa Saldo (Bersih)</p>
-                                <svg class="lucide lucide-banknote text-primary-purple" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
-                            </div>
-                            <p id="net-balance" class="text-3xl font-bold mt-2 text-primary-purple">Rp 0</p>
-                            <p class="text-xs text-gray-500 mt-1">Estimasi saldo berjalan</p>
-                        </div>
-                    </div>
-                    
-                    <h2 class="text-2xl font-semibold text-gray-700 pt-8 border-t border-gray-200 mt-8">Pilih Modul Managemen Bisnis</h2>
+        <div id="content-container"></div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        
-                        <!-- Card: Pelanggan -->
-                        <a href="#" class="nav-card p-6 bg-white/95 rounded-2xl shadow-lg transition duration-300 transform hover:-translate-y-1 border border-primary-purple/10 hover:border-primary-purple/50" data-target-page="customers">
-                            <div class="flex flex-col items-start space-y-3">
-                                <div class="p-3 bg-primary-purple/10 rounded-xl">
-                                    <svg class="lucide lucide-users lucide-lg text-primary-purple" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                                </div>
-                                <h3 class="text-xl font-bold text-gray-800">Data Pelanggan</h3>
-                                <p class="text-sm text-gray-500">Kelola data pelanggan, kontak, dan riwayat transaksi.</p>
-                            </div>
-                        </a>
+        <div id="content-container">
+            <!-- Dashboard content will be loaded here -->
+</div>
+    </div>
 
-                        <!-- Card: Pembayaran -->
-                        <a href="#" class="nav-card p-6 bg-white/95 rounded-2xl shadow-lg transition duration-300 transform hover:-translate-y-1 border border-secondary-purple/10 hover:border-secondary-purple/50" data-target-page="payments">
-                            <div class="flex flex-col items-start space-y-3">
-                                <div class="p-3 bg-secondary-purple/10 rounded-xl">
-                                    <svg class="lucide lucide-credit-card lucide-lg text-secondary-purple" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
-                                </div>
-                                <h3 class="text-xl font-bold text-gray-800">Lacak Pembayaran</h3>
-                                <p class="text-sm text-gray-500">Catat status pembayaran, tagihan, dan piutang.</p>
-                            </div>
-                        </a>
-
-                        <!-- Card: Pembukuan -->
-                        <a href="#" class="nav-card p-6 bg-white/95 rounded-2xl shadow-lg transition duration-300 transform hover:-translate-y-1 border border-green-500/10 hover:border-green-500/50" data-target-page="finance">
-                            <div class="flex flex-col items-start space-y-3">
-                                <div class="p-3 bg-green-500/10 rounded-xl">
-                                    <svg class="lucide lucide-landmark lucide-lg text-green-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><line x1="3" x2="21" y1="22" y2="22"/><path d="m6 18 3-4-2-4 4 2 2-5 4 2-2 4 3 4"/><line x1="2" x2="22" y1="6" y2="6"/><line x1="12" x2="12" y1="2" y2="22"/></svg>
-                                </div>
-                                <h3 class="text-xl font-bold text-gray-800">Pembukuan Keuangan</h3>
-                                <p class="text-sm text-gray-500">Monitor uang masuk (pemasukan) dan uang keluar (pengeluaran).</p>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <!-- Bagian Detail Transaksi Terbaru -->
-                    <div class="mt-8">
-                        <h3 class="text-xl font-semibold mb-4 text-gray-700">Aktivitas Terbaru</h3>
-                        <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
-                            <p class="text-gray-500">
-                                Di sini akan ditampilkan ringkasan visual atau grafik untuk performa bisnis Anda.
-                            </p>
-                        </div>
-                    </div>
-
+	<!-- Modal Pindah Pegawai -->
+    <div id="move-employee-modal" class="login-modal hidden">
+            <div class="modal-content">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-gray-900">Pindahkan Pegawai</h2>
+                    <button id="close-move-modal-btn" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
                 </div>
-
-                <!-- Konten Pelanggan -->
-                <div id="customers" class="page-content hidden space-y-6">
-                    <!-- Konten Data Pelanggan (Tidak berubah) -->
-                    <h2 class="text-2xl font-semibold text-gray-700">Data Pelanggan</h2>
-                    
-                    <!-- Area Kontrol (Edit/Simpan & Batal) -->
-                    <div class="flex justify-end space-x-3">
-                        <button id="edit-toggle-btn" class="px-4 py-2 bg-primary-purple text-white font-medium rounded-lg shadow-md hover:bg-secondary-purple transition duration-200">
-                            Edit
-                        </button>
-                        <button id="cancel-btn" class="px-4 py-2 bg-gray-500 text-white font-medium rounded-lg shadow-md hover:bg-gray-600 transition duration-200 hidden">
+                <form id="move-employee-form">
+                    <input type="hidden" id="move-employee-id">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">
+                            Nama Pegawai
+                        </label>
+                        <input class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-500 bg-gray-100 leading-tight focus:outline-none" id="move-employee-name" type="text" readonly>
+                    </div>
+					<div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">
+                            NIPP
+                        </label>
+                        <input class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-500 bg-gray-100 leading-tight focus:outline-none" id="move-employee-nipp" type="text" readonly>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">
+                            Jabatan
+                        </label>
+                        <input class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-500 bg-gray-100 leading-tight focus:outline-none" id="move-employee-position" type="text" readonly>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">
+                            Stasiun Lama
+                        </label>
+                        <input class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-500 bg-gray-100 leading-tight focus:outline-none" id="move-employee-old-station" type="text" readonly>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="move-employee-new-station">
+                            Pindahkan Ke Stasiun Baru
+                        </label>
+                        <select id="move-employee-new-station" class="shadow border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </select>
+                    </div>
+                    <div class="flex items-center justify-end space-x-2">
+                         <button id="cancel-move-btn" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline" type="button">
                             Batal
                         </button>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
-                        <p class="text-gray-600 mb-4">Daftar lengkap pelanggan, termasuk informasi kontak dan detail layanan.</p>
-                        
-                        <div class="overflow-x-auto">
-                            <!-- Tabel Data Pelanggan -->
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NO</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID PELANGGAN</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NAMA</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ALAMAT</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NOMOR HP</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">PAKET</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">TARIF</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">TANGGAL PASANG</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">STATUS</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="customer-table-body" class="bg-white divide-y divide-gray-100">
-                                    <!-- Data akan dimuat secara dinamis -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    
-                    <!-- Tombol Tambah Pelanggan -->
-                    <div id="add-customer-btn-container" class="mt-4 text-center hidden">
-                        <button id="add-customer-btn" class="px-6 py-3 bg-green-600 text-white font-semibold rounded-xl shadow-lg hover:bg-green-700 transition duration-200 flex items-center mx-auto">
-                            <svg class="lucide lucide-user-plus mr-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>
-                            Tambah Pelanggan Baru
+                        <button id="save-move-btn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline" type="button">
+                            Simpan
                         </button>
                     </div>
-
-                </div>
-
-                <!-- Konten Pembayaran (Diperbarui) -->
-                <div id="payments" class="page-content hidden space-y-6">
-                    <h2 class="text-2xl font-semibold text-gray-700">Lacak Pembayaran Pelanggan</h2>
-                    
-                    <div class="flex justify-between items-center bg-blue-50 p-4 rounded-xl border border-blue-100">
-                        <p class="text-sm text-blue-800">Total pembayaran bulan ini: <span class="font-bold text-lg">Rp 0</span></p>
-                        <button id="open-payment-modal-btn" class="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 transition duration-200 text-sm">
-                            <svg class="lucide lucide-plus-circle inline-block mr-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="16"/><line x1="8" x2="16" y1="12" y2="12"/></svg>
-                            Input Pembayaran Baru
-                        </button>
-                    </div>
-
-                    <!-- Tabel Terbayar -->
-                    <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
-                        <div class="flex justify-between items-center mb-4">
-                            <p class="text-black font-bold text-xl">TERBAYAR</p>
-                            <!-- Filter Section -->
-                            <div class="flex items-center space-x-2">
-                                <select id="paid-month-filter" class="text-sm rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                    <!-- Opsi bulan akan diisi oleh JavaScript -->
-                                </select>
-                                <select id="paid-year-filter" class="text-sm rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                    <!-- Opsi tahun akan diisi oleh JavaScript -->
-                                </select>
-                                <button id="apply-paid-filter-btn" class="px-3 py-1.5 bg-primary-purple text-white text-sm font-medium rounded-md shadow-sm hover:bg-secondary-purple transition duration-200">
-                                    Apply
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NO</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID PELANGGAN</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NAMA</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">PAKET</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">TARIF</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">DISKON</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">TOTAL TARIF</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">STATUS PEMBAYARAN</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">TANGGAL PEMBAYARAN</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">PENGGUNAAN BULAN</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">METODE</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="payment-table-body" class="bg-white divide-y divide-gray-100">
-                                    <!-- Data akan dimuat secara dinamis -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- Tabel Belum Bayar (BARU) -->
-                    <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 mt-6">
-                        <div class="flex justify-between items-center mb-4">
-                            <p class="text-black font-bold text-xl">BELUM BAYAR</p>
-                             <!-- Filter Section -->
-                            <div class="flex items-center space-x-2">
-                                <select id="unpaid-month-filter" class="text-sm rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                    <!-- Opsi bulan akan diisi oleh JavaScript -->
-                                </select>
-                                <select id="unpaid-year-filter" class="text-sm rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                     <!-- Opsi tahun akan diisi oleh JavaScript -->
-                                </select>
-                                <button id="apply-unpaid-filter-btn" class="px-3 py-1.5 bg-primary-purple text-white text-sm font-medium rounded-md shadow-sm hover:bg-secondary-purple transition duration-200">
-                                    Apply
-                                </button>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 mb-4 text-sm">Daftar pelanggan yang tagihannya belum tercatat di tabel Terbayar.</p>
-                        
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NO</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID PELANGGAN</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NAMA</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">PAKET</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">TARIF</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">PENGGUNAAN BULAN</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="unpaid-table-body" class="bg-white divide-y divide-gray-100">
-                                    <!-- Data akan dimuat secara dinamis -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Konten Pembukuan -->
-                <div id="finance" class="page-content hidden space-y-8">
-                    <h2 class="text-2xl font-semibold text-gray-700">Laporan Keuangan</h2>
-
-                    <!-- Tabel Pemasukan -->
-                    <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
-                        <div class="flex justify-between items-center mb-4">
-                            <h3 class="text-xl font-semibold text-green-700">Pemasukan</h3>
-                            <!-- Filter Section -->
-                            <div class="flex items-center space-x-2">
-                                <select id="income-year-filter" class="text-sm rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                    <!-- Opsi tahun akan diisi oleh JavaScript -->
-                                </select>
-                                <button id="apply-income-filter-btn" class="px-3 py-1.5 bg-primary-purple text-white text-sm font-medium rounded-md shadow-sm hover:bg-secondary-purple transition duration-200">
-                                    Apply
-                                </button>
-                            </div>
-                        </div>
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pembayaran Bulan</th>
-                                        <th class="px-3 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Jumlah</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="income-table-body" class="bg-white divide-y divide-gray-100">
-                                    <!-- Data akan dimuat secara dinamis -->
-                                </tbody>
-                                <tfoot class="bg-gray-50 border-t-2 border-gray-300">
-                                    <tr>
-                                        <th class="px-3 py-3 text-right text-sm font-bold text-gray-700 uppercase tracking-wider">Total Pemasukan</th>
-                                        <td id="income-total" class="px-3 py-4 font-bold text-green-600 text-right">Rp 0</td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- Tabel Pengeluaran -->
-                    <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="flex-grow">
-                                <h3 class="text-xl font-semibold text-red-700">Pengeluaran</h3>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <!-- Filter Section -->
-                                <div id="expense-filter-container" class="flex items-center space-x-2">
-                                    <select id="expense-month-filter" class="text-sm rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                        <!-- Opsi bulan akan diisi oleh JavaScript -->
-                                    </select>
-                                    <select id="expense-year-filter" class="text-sm rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                        <!-- Opsi tahun akan diisi oleh JavaScript -->
-                                    </select>
-                                    <button id="apply-expense-filter-btn" class="px-3 py-1.5 bg-primary-purple text-white text-sm font-medium rounded-md shadow-sm hover:bg-secondary-purple transition duration-200">
-                                        Apply
-                                    </button>
-                                </div>
-                                <div id="expense-controls" class="flex items-center space-x-2 ml-4">
-                                    <button id="add-expense-btn" class="px-4 py-2 bg-red-600 text-white font-medium rounded-lg shadow-md hover:bg-red-700 transition duration-200 text-sm">
-                                        <svg class="lucide lucide-plus-circle inline-block mr-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="16"/><line x1="8" x2="16" y1="12" y2="12"/></svg>
-                                        Input Pengeluaran
-                                    </button>
-                                    <button id="save-expense-btn" class="px-4 py-2 bg-green-600 text-white font-medium rounded-lg shadow-md hover:bg-green-700 transition duration-200 text-sm hidden">Simpan</button>
-                                    <button id="cancel-expense-btn" class="px-4 py-2 bg-gray-500 text-white font-medium rounded-lg shadow-md hover:bg-gray-600 transition duration-200 text-sm hidden">Batal</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NO</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">TANGGAL</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jenis</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Banyaknya</th>
-                                        <th class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Harga Satuan</th>
-                                        <th class="px-3 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Jumlah</th>
-                                        <th id="expense-action-header" class="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="expense-table-body" class="bg-white divide-y divide-gray-100">
-                                   <!-- Data akan dimuat secara dinamis -->
-                                </tbody>
-                                <tfoot class="bg-gray-50 border-t-2 border-gray-300">
-                                    <tr>
-                                        <th colspan="6" class="px-3 py-3 text-right text-sm font-bold text-gray-700 uppercase tracking-wider">Total</th>
-                                        <td id="expense-total" class="px-3 py-4 font-bold text-red-600 text-right">Rp 0</td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- Saldo Akhir Section -->
-                    <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 mt-8">
-                        <h3 class="text-xl font-semibold text-primary-purple mb-4">Ringkasan Saldo Akhir</h3>
-                        <table class="min-w-full">
-                            <tbody class="divide-y divide-gray-200">
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-3 py-4 text-sm font-medium text-gray-700">Sisa Saldo Tahun Sebelumnya</td>
-                                    <td id="prev-year-balance" class="px-3 py-4 text-sm font-semibold text-gray-900 text-right">Rp 0</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-3 py-4 text-sm font-medium text-gray-700">Pemasukan (Tahun Berjalan)</td>
-                                    <td id="current-year-income" class="px-3 py-4 text-sm font-semibold text-green-700 text-right">Rp 0</td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-3 py-4 text-sm font-medium text-gray-700">Pengeluaran (Tahun Berjalan)</td>
-                                    <td id="current-year-expense" class="px-3 py-4 text-sm font-semibold text-red-700 text-right">Rp 0</td>
-                                </tr>
-                                <tr class="bg-indigo-50 border-t-2 border-primary-purple">
-                                    <td class="px-3 py-4 text-base font-bold text-primary-purple">SALDO AKHIR TAHUN INI</td>
-                                    <td id="final-balance" class="px-3 py-4 text-base font-extrabold text-primary-purple text-right">Rp 0</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-
-            </section>
-
+                </form>
+            </div>
         </div>
-    </main>
 
-    <!-- Modal Formulir Input Pembayaran (Baru Ditambahkan) -->
-    <div id="payment-form-modal" class="modal-overlay hidden">
+    <!-- Modal Login (default hidden) -->
+    <div id="login-modal" class="login-modal hidden">
         <div class="modal-content">
-            <header class="flex justify-between items-center mb-6 border-b pb-3">
-                <h3 class="text-2xl font-bold text-primary-purple">Formulir Pembayaran Baru</h3>
-                <button id="close-payment-modal-btn" class="text-gray-400 hover:text-gray-600">
-                    <svg class="lucide lucide-x" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
-                </button>
-            </header>
-            
-            <form id="payment-form" class="space-y-4">
-                
-                <!-- ID PELANGGAN (Input/Lookup) -->
-                <div>
-                    <label for="id_pelanggan" class="block text-sm font-medium text-gray-700">ID Pelanggan (Cari)</label>
-                    <input type="text" id="id_pelanggan" name="id_pelanggan" placeholder="Contoh: MJ-001" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary-purple focus:ring-primary-purple p-3 uppercase" required>
-                    <p id="lookup-message" class="text-xs mt-1 text-red-500"></p>
+            <h2 class="text-2xl font-bold mb-4 text-gray-900">Masuk</h2>
+            <form>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                        Nama Pengguna
+                    </label>
+                    <input class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500" id="username" type="text" placeholder="Nama Pengguna">
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- NAMA (Tampil Otomatis) -->
-                    <div>
-                        <label for="nama" class="block text-sm font-medium text-gray-700">Nama Pelanggan</label>
-                        <input type="text" id="nama" name="nama" class="mt-1 block w-full rounded-lg bg-gray-100 border-gray-300 p-3 text-gray-600" readonly>
-                    </div>
-                    
-                    <!-- PAKET (Tampil Otomatis) -->
-                    <div>
-                        <label for="paket" class="block text-sm font-medium text-gray-700">Paket Layanan</label>
-                        <input type="text" id="paket" name="paket" class="mt-1 block w-full rounded-lg bg-gray-100 border-gray-300 p-3 text-gray-600" readonly>
-                    </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                        Kata Sandi
+                    </label>
+                    <input class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500" id="password" type="password" placeholder="Kata Sandi">
                 </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <!-- TARIF (Tampil Otomatis) -->
-                    <div>
-                        <label for="tarif" class="block text-sm font-medium text-gray-700">Tarif Dasar (Rp)</label>
-                        <input type="text" id="tarif" name="tarif" class="mt-1 block w-full rounded-lg bg-gray-100 border-gray-300 p-3 font-semibold text-gray-700" readonly>
-                        <input type="hidden" id="raw_tarif" value="0">
-                    </div>
-                    
-                    <!-- DISKON (Input) -->
-                    <div>
-                        <label for="diskon" class="block text-sm font-medium text-gray-700">Diskon (Rp)</label>
-                        <input type="number" id="diskon" name="diskon" value="0" min="0" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary-purple focus:ring-primary-purple p-3">
-                    </div>
-                    
-                    <!-- TOTAL TARIF (Perhitungan Otomatis) -->
-                    <div>
-                        <label for="total_tarif" class="block text-sm font-medium text-gray-700">Total Tarif (Rp)</label>
-                        <input type="text" id="total_tarif" name="total_tarif" class="mt-1 block w-full rounded-lg bg-indigo-50 border-primary-purple/50 p-3 font-bold text-primary-purple" readonly>
-                        <input type="hidden" id="raw_total_tarif" value="0">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- PENGGUNAAN BULAN (Input/Dropdown) -->
-                    <div>
-                        <label for="penggunaan_bulan" class="block text-sm font-medium text-gray-700">Penggunaan Bulan</label>
-                        <input type="month" id="penggunaan_bulan" name="penggunaan_bulan" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary-purple focus:ring-primary-purple p-3" required>
-                    </div>
-
-                    <!-- TANGGAL PEMBAYARAN (Date Picker) -->
-                    <div>
-                        <label for="tgl_pembayaran" class="block text-sm font-medium text-gray-700">Tanggal Pembayaran</label>
-                        <input type="date" id="tgl_pembayaran" name="tgl_pembayaran" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary-purple focus:ring-primary-purple p-3" required>
-                    </div>
-                </div>
-
-                <!-- METODE -->
-                <div>
-                    <label for="metode" class="block text-sm font-medium text-gray-700">Metode Pembayaran</label>
-                    <select id="metode" name="metode" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-primary-purple focus:ring-primary-purple p-3" required>
-                        <option value="">Pilih Metode</option>
-                        <option value="Transfer Bank">Transfer Bank</option>
-                        <option value="Kas Tunai">Kas Tunai</option>
-                        <option value="E-Wallet">E-Wallet</option>
-                    </select>
-                </div>
-
-                <div class="pt-4 flex justify-end space-x-3">
-                    <button type="button" id="form-cancel-btn" class="px-5 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition duration-200">
-                        Batal
+                <div class="flex items-center justify-between">
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline" type="button">
+                        Masuk
                     </button>
-                    <button type="submit" class="px-5 py-2 bg-primary-purple text-white font-semibold rounded-lg shadow-lg hover:bg-secondary-purple transition duration-200 flex items-center">
-                        <svg class="lucide lucide-check-circle mr-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-                        Catat Pembayaran
-                    </button>
+                    <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+                        Lupa Kata Sandi?
+                    </a>
                 </div>
             </form>
+            <button id="close-login-modal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800">&times;</button>
         </div>
     </div>
 
-    
-    <script src="./assets/js/main.js"></script>
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-[1001] hidden items-center justify-center">
+        <div class="w-16 h-16 border-4 border-white border-t-blue-500 rounded-full animate-spin"></div>
+    </div>
+
+    <!-- Message Modal -->
+    <div id="message-modal" class="fixed inset-0 bg-black bg-opacity-50 z-[1001] hidden items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-xl p-6 max-w-sm w-full text-center">
+            <p id="message-text" class="text-gray-800 mb-4"></p>
+            <button id="message-close-btn" class="bg-blue-500 text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-blue-600 transition-colors duration-300">OK</button>
+        </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+
 </body>
 </html>
 
